@@ -3,7 +3,7 @@ package server
 import (
 	"encoding/json"
 	"net/http"
-	
+
 	"github.com/gorilla/mux"
 )
 
@@ -33,13 +33,13 @@ type ConsumeResponse struct {
 	Record Record `json:"record"`
 }
 
-func NewHTTPServer (addr string) *http.Server {
+func NewHTTPServer(addr string) *http.Server {
 	httpsrv := newHTTPServer()
 	r := mux.NewRouter()
 	r.HandleFunc("/", httpsrv.handleProduce).Methods("POST")
 	r.HandleFunc("/", httpsrv.handleConsume).Methods("GET")
 	return &http.Server{
-		Addr: addr,
+		Addr:    addr,
 		Handler: r,
 	}
 }
