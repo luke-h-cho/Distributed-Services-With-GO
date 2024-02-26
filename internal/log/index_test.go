@@ -2,7 +2,6 @@ package log
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -10,7 +9,7 @@ import (
 )
 
 func TestIndex(t *testing.T) {
-	f, err := ioutil.TempFile(os.TempDir(), "index_test")
+	f, err := os.CreateTemp(os.TempDir(), "index_test")
 	require.NoError(t, err)
 
 	defer os.Remove(f.Name())
@@ -29,8 +28,8 @@ func TestIndex(t *testing.T) {
 		Off uint32
 		Pos uint64
 	}{
-		{ Off: 0, Pos: 0 },
-		{ Off: 1, Pos: 10 },
+		{Off: 0, Pos: 0},
+		{Off: 1, Pos: 10},
 	}
 
 	for _, want := range entries {
