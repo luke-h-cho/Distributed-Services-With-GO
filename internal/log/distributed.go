@@ -76,7 +76,7 @@ func (l *DistributedLog) setupRaft(dataDir string) error {
 	maxPool := 5
 	timeout := 10 * time.Second
 	transport := raft.NewNetworkTransport(
-		*l.config.Raft.StreamLayer,
+		l.config.Raft.StreamLayer,
 		maxPool,
 		timeout,
 		os.Stderr,
